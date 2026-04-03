@@ -1,0 +1,337 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+:root {
+    --accent: #7dd3fc;
+    --accent-2: #c084fc;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-2: rgba(255, 255, 255, 0.04);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    background: radial-gradient(ellipse at 10% 10%, rgba(200, 220, 255, 0.06), transparent 10%),
+        radial-gradient(ellipse at 90% 80%, rgba(200, 180, 255, 0.05), transparent 10%),
+        linear-gradient(180deg, #070416 0%, #0b1020 50%, #051025 100%);
+    color: #e6eef8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-saturno {
+    background-image: url("../saturnoimg.png");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: contain;
+    height: 50vh;
+    width: 50vw;
+    position: absolute;
+    top: 47vh;
+    left: 30vw;
+    z-index: 0;
+    pointer-events: none;
+}
+
+
+.principal {
+    width: min(1100px, 96%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 20px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px) saturate(120%);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.principal::before,
+.principal::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+    opacity: 0.7;
+    mix-blend-mode: screen;
+}
+
+.principal::before {
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    right: -120px;
+    top: -80px;
+    background: radial-gradient(circle at 30% 30%, var(--accent), transparent 40%);
+}
+
+.principal::after {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    left: -80px;
+    bottom: -100px;
+    background: radial-gradient(circle at 70% 70%, var(--accent-2), transparent 40%);
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    z-index: 1
+}
+
+.logo img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6)
+}
+
+.links {
+    display: flex;
+    gap: 1rem
+}
+
+.links a {
+    color: rgba(230, 238, 248, 0.9);
+    text-decoration: none;
+    padding: 0.45rem 0.6rem;
+    border-radius: 10px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color .28s ease;
+}
+
+.links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scaleX(0);
+    height: 120%;
+    width: 120%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    transition: transform .36s cubic-bezier(.2, .9, .2, 1);
+    border-radius: 12px;
+    z-index: -1
+}
+
+.links a:hover {
+    color: #001021
+}
+
+.links a:hover::after {
+    transform: translate(-50%, -50%) scaleX(1)
+}
+
+/* Parte central: imagem + informações */
+.parte-central {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem;
+    z-index: 1
+}
+
+.foto {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.foto img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 30px 60px rgba(5, 10, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transform-origin: center;
+    animation: float 6s ease-in-out infinite
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(-1deg)
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(1deg)
+    }
+
+    100% {
+        transform: translateY(0) rotate(-1deg)
+    }
+}
+
+.informacoes {
+    padding: 0.75rem
+}
+
+.textos h1 {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 6px 30px rgba(124, 58, 237, 0.18)
+}
+
+.textos p {
+    color: rgba(230, 238, 248, 0.9);
+    font-size: 1rem;
+    line-height: 1.6;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.02));
+    padding: 1rem;
+    border-radius: 12px;
+    text-shadow: 0 0 10px #000, 0 0 20px #5e00f6;
+}
+
+.textos p::selection {
+    background-color: #fff;
+}
+
+.textos {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: reveal .9s ease forwards .25s
+}
+
+@keyframes reveal {
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+
+/* Global text selection: white background, dark text for readability */
+::selection {
+    background: #ffffff;
+    color: #021124;
+}
+
+::-moz-selection {
+    background: #ffffff;
+    color: #021124;
+}
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    margin-top: 1rem;
+    z-index: 1
+}
+
+.footer h1 {
+    font-size: 1.1rem;
+    color: rgba(230, 238, 248, 0.95)
+}
+
+.footer h1::selection {
+    background-color: #fff;
+    color: #021124;
+}
+
+.footer img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: cover;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.6))
+}
+
+
+.principal .shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.02) 100%);
+    transform: translateX(-120%);
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: overlay;
+    animation: glide 7s linear infinite
+}
+
+@keyframes glide {
+    to {
+        transform: translateX(120%)
+    }
+}
+
+
+@media (max-width:880px) {
+    .parte-central {
+        grid-template-columns: 1fr;
+        gap: 1rem
+    }
+
+    .foto img {
+        width: 260px;
+        height: 260px
+    }
+
+    .textos h1 {
+        font-size: 2rem
+    }
+}
+
+@media (max-width:480px) {
+    .header {
+        flex-direction: column;
+        gap: 0.75rem
+    }
+
+    .links {
+        gap: 0.6rem
+    }
+
+    body {
+        padding: 2rem 1rem
+    }
+
+    .foto img {
+        width: 200px;
+        height: 200px
+    }
+}
+
+
+img[alt] {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+
+.links a:focus {
+    outline: 2px solid rgba(125, 211, 252, 0.18);
+    outline-offset: 3px
+}
